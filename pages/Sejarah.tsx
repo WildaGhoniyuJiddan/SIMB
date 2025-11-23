@@ -1,6 +1,6 @@
 import React from 'react';
 import GlassCard from '../components/GlassCard';
-import { Calendar, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { TsunamiEvent } from '../types';
 
 const events: TsunamiEvent[] = [
@@ -12,7 +12,7 @@ const events: TsunamiEvent[] = [
     height: 6,
     casualties: 4340,
     description: "Gempa bermagnitudo 7.4 memicu tsunami akibat longsoran bawah laut di Teluk Palu.",
-    image: "https://images.unsplash.com/photo-1629814467295-a226b5277868?q=80&w=2071&auto=format&fit=crop"
+    image: "/assets/palu.jpg"
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const events: TsunamiEvent[] = [
     height: 5,
     casualties: 437,
     description: "Dipicu oleh longsoran tubuh Gunung Anak Krakatau ke laut, tanpa didahului gempa tektonik yang kuat.",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop"
+    image: "/assets/selatsunda.jpg"
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const events: TsunamiEvent[] = [
     height: 40.5,
     casualties: 19747,
     description: "Salah satu gempa terbesar dalam sejarah, menyebabkan kecelakaan nuklir Fukushima.",
-    image: "https://images.unsplash.com/photo-1516550893923-274d57a557d3?q=80&w=1974&auto=format&fit=crop"
+    image: "/assets/jepang.jpg"
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const events: TsunamiEvent[] = [
     height: 30,
     casualties: 227000,
     description: "Bencana tsunami paling mematikan dalam sejarah modern, berdampak pada 14 negara.",
-    image: "https://images.unsplash.com/photo-1454789476662-53eb23ba5907?q=80&w=1952&auto=format&fit=crop"
+    image: "/assets/aceh.jpg"
   }
 ];
 

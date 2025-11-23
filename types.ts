@@ -21,6 +21,7 @@ export interface MitigationStep {
   title: string;
   description: string;
   icon: string;
+  image?: string;
 }
 
 export interface MapLocation {

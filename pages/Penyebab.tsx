@@ -1,30 +1,29 @@
 import React from 'react';
 import GlassCard from '../components/GlassCard';
-import { motion } from 'framer-motion';
 
 const causes = [
   {
     title: "Longsor Bawah Laut",
     desc: "Runtuhan material di lereng dasar laut menyebabkan perubahan mendadak pada volume air.",
-    img: "https://images.unsplash.com/photo-1580741186862-25d2d786d0a4?q=80&w=2070&auto=format&fit=crop",
+    img: "/assets/longsor.webp",
     color: "from-amber-400 to-orange-500"
   },
   {
     title: "Gunung Berapi Bawah Laut",
     desc: "Letusan kuat dapat memicu pergerakan tanah atau kolom air yang masif.",
-    img: "https://images.unsplash.com/photo-1518182170546-0766acbf3a47?q=80&w=2000&auto=format&fit=crop",
+    img: "/assets/gunung.jpg",
     color: "from-red-500 to-rose-600"
   },
   {
     title: "Gempa Bumi Tektonik",
     desc: "Penyebab paling umum. Pergeseran lempeng vertikal di dasar laut.",
-    img: "https://images.unsplash.com/photo-1594770258525-24b51829393e?q=80&w=2070&auto=format&fit=crop",
+    img: "/assets/gempa.png",
     color: "from-blue-500 to-indigo-600"
   },
   {
-    title: "Hantaman Meteor",
+    title: "Benda Langit (Meteor)",
     desc: "Sangat jarang, namun hantaman benda langit besar ke laut dapat memicu mega-tsunami.",
-    img: "https://images.unsplash.com/photo-1469532822986-074f07a51806?q=80&w=2070&auto=format&fit=crop",
+    img: "/assets/benda.jpg",
     color: "from-purple-500 to-violet-600"
   }
 ];
