@@ -10,6 +10,7 @@ import Dampak from './pages/Dampak';
 import Mitigasi from './pages/Mitigasi';
 import VideoEdukasi from './pages/VideoEdukasi';
 import PetaSebaran from './pages/PetaSebaran';
+import AdminLogin from './pages/AdminLogin';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
           <Route path="/mitigasi" element={<Mitigasi />} />
           <Route path="/edukasi" element={<VideoEdukasi />} />
           <Route path="/peta" element={<PetaSebaran />} />
+          <Route path="/login" element={<AdminLogin />} />
         </Routes>
       </Layout>
     </Router>
