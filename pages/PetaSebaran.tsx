@@ -30,11 +30,15 @@ const PetaSebaran: React.FC = () => {
       const map = window.L.map(mapContainer.current).setView([-2.5, 118], 5);
       
       // Add Dark Tile Layer for better aesthetic match
-      window.L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-      }).addTo(map);
+      window.L.tileLayer(
+  'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+  {
+    maxZoom: 19,
+    attribution:
+      '&copy; OpenStreetMap contributors, Tiles style by HOT',
+  }
+).addTo(map);
+
 
       // Add Markers
       locations.forEach((loc) => {

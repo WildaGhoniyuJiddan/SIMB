@@ -15,20 +15,18 @@ const DataTsunami: React.FC = () => {
   const [chartData, setChartData] = useState<TsunamiStats[]>([]);
 
   useEffect(() => {
-    // Simulasi pengambilan data dari Database via API PHP
-    // Nanti Anda ganti URL ini dengan URL file PHP Anda, misal: 'http://localhost/simatsu/api/get_data.php'
     const fetchData = async () => {
       try {
         setLoading(true);
-        
-        // UNCOMMENT baris di bawah ini dan hapus timeout simulasi jika API PHP sudah siap
+
+        // UNCOMMENT kalau sudah pakai API beneran
         // const response = await fetch('http://localhost/simatsu/api/get_data.php');
         // const result = await response.json();
         // setChartData(result);
 
-        // --- SIMULASI DATA (Hapus blok ini jika sudah connect PHP) ---
-        await new Promise(resolve => setTimeout(resolve, 1500)); // Pura-pura loading
-        const mockDataFromDB = [
+        // --- SIMULASI DATA ---
+        await new Promise((resolve) => setTimeout(resolve, 1500)); // pura-pura loading
+        const mockDataFromDB: TsunamiStats[] = [
           { year: '2004', casualties: 227000, label: 'Aceh' },
           { year: '2006', casualties: 668, label: 'Pangandaran' },
           { year: '2010', casualties: 435, label: 'Mentawai' },
@@ -36,11 +34,12 @@ const DataTsunami: React.FC = () => {
           { year: '2018', casualties: 437, label: 'Selat Sunda' },
         ];
         setChartData(mockDataFromDB);
-        // -----------------------------------------------------------
+        // ---------------------
 
       } catch (error) {
-        console.error("Gagal mengambil data dari database:", error);
-      } else {
+        console.error('Gagal mengambil data dari database:', error);
+      } finally {
+        // ini akan jalan baik try sukses maupun error
         setLoading(false);
       }
     };
