@@ -2,6 +2,7 @@ import React from 'react';
 import GlassCard from '../components/GlassCard';
 import { MapPin } from 'lucide-react';
 import { TsunamiEvent } from '../types';
+import CircularGallery from '../components/CircularGallery';
 
 const events: TsunamiEvent[] = [
   {
@@ -47,65 +48,116 @@ const events: TsunamiEvent[] = [
 ];
 
 const Sejarah: React.FC = () => {
+  // data untuk gallery (gambar + teks di bawah foto)
+  const galleryItems = events.map(e => ({
+    image: e.image,
+    text: `${e.year} – ${e.location}`
+  }));
+
   return (
     <div className="max-w-5xl mx-auto">
-      <div className="text-center mb-12">
+      {/* Title */}
+      <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-white mb-2">Jejak Sejarah</h1>
-        <p className="text-slate-400">Mempelajari masa lalu untuk menyelamatkan masa depan.</p>
+        <p className="text-slate-400">
+          Mempelajari masa lalu untuk menyelamatkan masa depan.
+        </p>
       </div>
 
+      {/* === CIRCULAR GALLERY SECTION (BARU) === */}
+      <div className="mb-12 rounded-[2rem] border border-white/10 bg-slate-950/40 shadow-[0_0_40px_rgba(15,23,42,0.8)] overflow-hidden">
+        {/* tinggi container bisa kamu ubah-ubah */}
+        <div style={{ height: '260px', position: 'relative' }}>
+          <CircularGallery
+            items={galleryItems}
+            bend={3}              // seberapa melengkung
+            textColor="#ffffff"   // warna teks di bawah gambar
+            borderRadius={0.08}   // radius sudut kartu (0–0.5)
+            font="bold 24px Outfit"
+            scrollSpeed={2}
+            scrollEase={0.05}
+          />
+        </div>
+      </div>
+      {/* === END CIRCULAR GALLERY === */}
+
+      {/* Timeline seperti sebelumnya */}
       <div className="relative">
         {/* Center Line */}
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-500 via-purple-500 to-transparent rounded-full hidden md:block opacity-30"></div>
 
         <div className="space-y-12">
           {events.map((event, index) => (
-            <div key={event.id} className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-              
+            <div
+              key={event.id}
+              className={`flex flex-col md:flex-row items-center gap-8 ${
+                index % 2 === 0 ? 'md:flex-row-reverse' : ''
+              }`}
+            >
               {/* Image Side */}
               <div className="w-full md:w-1/2">
                 <div className="relative group overflow-hidden rounded-2xl border-4 border-white/10 shadow-2xl">
-                    <img 
-                        src={event.image} 
-                        alt={event.location} 
-                        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4">
-                        <span className="bg-cyan-500 text-white text-xs font-bold px-2 py-1 rounded-md">{event.year}</span>
-                    </div>
+                  <img
+                    src={event.image}
+                    alt={event.location}
+                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4">
+                    <span className="bg-cyan-500 text-white text-xs font-bold px-2 py-1 rounded-md">
+                      {event.year}
+                    </span>
+                  </div>
                 </div>
               </div>
 
               {/* Content Side */}
               <div className="w-full md:w-1/2">
-                 <GlassCard hoverEffect={false} className="relative">
-                    {/* Dot connector for desktop */}
-                    <div className={`absolute top-1/2 ${index % 2 === 0 ? '-right-[42px]' : '-left-[42px]'} w-5 h-5 bg-cyan-400 rounded-full border-4 border-slate-900 hidden md:block transform -translate-y-1/2 shadow-[0_0_15px_rgba(34,211,238,0.8)] z-10`}></div>
-                    
-                    <div className="flex items-center gap-2 mb-2 text-cyan-300">
-                        <MapPin size={16} />
-                        <span className="font-semibold tracking-wide uppercase text-sm">{event.location}</span>
+                <GlassCard hoverEffect={false} className="relative">
+                  {/* Dot connector for desktop */}
+                  <div
+                    className={`absolute top-1/2 ${
+                      index % 2 === 0 ? '-right-[42px]' : '-left-[42px]'
+                    } w-5 h-5 bg-cyan-400 rounded-full border-4 border-slate-900 hidden md:block transform -translate-y-1/2 shadow-[0_0_15px_rgba(34,211,238,0.8)] z-10`}
+                  ></div>
+
+                  <div className="flex items-center gap-2 mb-2 text-cyan-300">
+                    <MapPin size={16} />
+                    <span className="font-semibold tracking-wide uppercase text-sm">
+                      {event.location}
+                    </span>
+                  </div>
+                  <h2 className="text-2xl font-bold mb-3">
+                    {event.year} Tsunami
+                  </h2>
+                  <p className="text-slate-300 text-sm leading-relaxed mb-4 border-b border-white/10 pb-4">
+                    {event.description}
+                  </p>
+                  <div className="flex justify-between text-sm">
+                    <div className="text-center">
+                      <div className="text-xs text-slate-400 uppercase">Mag</div>
+                      <div className="font-bold text-white">
+                        {event.magnitude > 0 ? event.magnitude : '-'} SR
+                      </div>
                     </div>
-                    <h2 className="text-2xl font-bold mb-3">{event.year} Tsunami</h2>
-                    <p className="text-slate-300 text-sm leading-relaxed mb-4 border-b border-white/10 pb-4">
-                        {event.description}
-                    </p>
-                    <div className="flex justify-between text-sm">
-                        <div className="text-center">
-                            <div className="text-xs text-slate-400 uppercase">Mag</div>
-                            <div className="font-bold text-white">{event.magnitude > 0 ? event.magnitude : '-'} SR</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-xs text-slate-400 uppercase">Tinggi</div>
-                            <div className="font-bold text-cyan-300">{event.height}m</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-xs text-slate-400 uppercase">Korban</div>
-                            <div className="font-bold text-rose-400">{event.casualties.toLocaleString()}</div>
-                        </div>
+                    <div className="text-center">
+                      <div className="text-xs text-slate-400 uppercase">
+                        Tinggi
+                      </div>
+                      <div className="font-bold text-cyan-300">
+                        {event.height}m
+                      </div>
                     </div>
-                 </GlassCard>
+                    <div className="text-center">
+                      <div className="text-xs text-slate-400 uppercase">
+                        Korban
+                      </div>
+                      <div className="font-bold text-rose-400">
+                        {event.casualties.toLocaleString()}
+                      </div>
+                    </div>
+                  </div>
+                </GlassCard>
               </div>
             </div>
           ))}
